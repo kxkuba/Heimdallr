@@ -110,12 +110,8 @@ class Transmitter_Twitter extends Heimdallr_TransmitterAbstract
             if ($template->getMode() != $key) {
                 $paramsServer['key'] = trim($key);
             }
-            $message = $this->getReceiver().' '.trim($this->getMessage($message, $value, $limit)).' ['.implode(', ', $paramsServer).']';
-            $postfix = ' T'.date('Hi');
-            if (strlen($message) <= (self::TWITTER_LENGTH - strlen($postfix))) {
-                $message .= $postfix;
-            }
-
+            $message  = $this->getReceiver().' '.trim($this->getMessage($message, $value, $limit));
+            $message .= PHP_EOL.'['.implode('; ', $paramsServer).']';
             if (strlen($message) > self::TWITTER_LENGTH) {
                 $message = substr($message, 0, self::TWITTER_LENGTH - 3).'...';
             }
