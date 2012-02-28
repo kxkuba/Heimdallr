@@ -34,13 +34,14 @@ class Event_Change extends Heimdallr_EventAbstract
         if ($key == $this->getKey()) {
             $file = $this->getPathTmp($template, $key);
             $content = file_get_contents($file);
-            if (empty($content)) {
+            if ($content != '0' && empty($content)) {
                 // Datei ist leer und wird erstmal mit Inhalt gefüllt
                 file_put_contents($file, $value);
             } else {
                 // Es wird geprüft, ob sie die Zahl geändert hat
                 if ($value != $content) {
                     $this->send($template, $this->getMessage(), $key, $value, $content);
+                    file_put_contents($file, $value);
                 }
             }
         }
