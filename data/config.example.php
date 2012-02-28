@@ -2,7 +2,7 @@
 return array(
     'messages' => array(
         'event' => array(
-            'Change'        => 'Der überwachte Wert hat sich geändert (%2$s -> %1$s)',
+            'Change'        => 'Der überwachte Wert hat sich von %1$s auf %2$s geändert',
             'Equal'         => 'Der überwachte Wert ist gleich %2$s',
             'LessThan'      => 'Der überwachte Wert ist kleiner %2$s',
             'LessEqual'     => 'Der überwachte Wert ist kleiner gleich %2$s',
