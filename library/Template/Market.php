@@ -69,7 +69,7 @@ class Template_Market extends Heimdallr_TemplateAbstract
     public function graph()
     {
         $title = $this->getServer()->getGraphTitle('Marktpreis von', '');
-        $label = '€';
+        $label = 'Preis';
         $name  = $this->adjustText(array(
             self::VALUE_MARKET => 'Preis',
         ));
