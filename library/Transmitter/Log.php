@@ -33,7 +33,7 @@ class Transmitter_Log extends Heimdallr_TransmitterAbstract
     public function send(Heimdallr_TemplateAbstract $template, $message, $key, $value, $limit)
     {
         $message = $this->getMessage($message, $value, $limit);
-        $file    = $this->getPathTmp($template, $key);
+        $file    = $this->getPathLog($template, $key);
         $content = date('Y-m-d_H-iP').' - '.$template->getServer()->getName().': '.$message;
         file_put_contents($file, file_get_contents($file).$content.PHP_EOL);
     }

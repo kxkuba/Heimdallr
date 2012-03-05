@@ -57,6 +57,25 @@ abstract class Heimdallr_TransmitterAbstract implements Heimdallr_TransmitterInt
     }
 
     /**
+     * Gibt den Pfad und Dateiname der Log Datei von diesem Event zurück
+     *
+     * @param  Heimdallr_TemplateAbstract $template
+     * @param  string                  $key
+     * @return string
+     */
+    public function getPathLog(Heimdallr_TemplateAbstract $template, $key)
+    {
+        $event = get_class($this);
+        $mode  = 'transmitter_'.substr($event, strrpos($event, '_') + 1).'_'.$template->getMode();
+        $type  = str_replace(' ', '', ucwords(str_replace('-', ' ', $template->getRrdtool()->getType())));
+        $name  = $template->getServer()->getName().'_'.$type;
+        if ($template->getDevice() != '') {
+            $name .= '_'.$template->getDevice();
+        }
+        return Main::getInstance()->getPathLog($name.'_'.$key, $mode);
+    }
+
+    /**
      * Prüft, wann die letzte Nachricht gesendet wurde ist und das die
      * Nachricht ausserhalb des Wartezeitraum ist
      *

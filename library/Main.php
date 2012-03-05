@@ -151,6 +151,29 @@ class Main
     }
 
     /**
+     * Gibt den Pfad für die Speicherung von Log Dateien zurück
+     *
+     * @param  string      $filename
+     * @param  null|string $mode
+     * @return string
+     */
+    public function getPathLog($filename, $mode = null)
+    {
+        $path = $this->getConfig(array('path', 'log'));
+        if (!file_exists($path)) {
+            throw new Heimdallr_Exception('Der Ordner "'.$path.'" existiert nicht');
+        }
+        $name = 'rrdtool_'.strtolower($mode).'_'.strtolower($filename).'_'.date('Y-m').'.log';
+        $path = realpath($path).'/'.preg_replace('/[^a-z0-9\.\-]+/i', '_', $name);
+        clearstatcache();
+        if (!file_exists($path)) {
+            touch($path, 0);
+            chmod($path, 0600);
+        }
+        return $path;
+    }
+
+    /**
      * Gibt den Pfad für die Speicherung von den rrdtool-Datenbank zurück
      *
      * @param  string $filename

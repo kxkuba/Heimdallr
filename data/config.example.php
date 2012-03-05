@@ -55,6 +55,7 @@ return array(
     ),
     'path' => array(
         'tmp'       => ROOT.'/data/tmp',
+        'log'       => ROOT.'/data/log',
         'database'  => ROOT.'/data/database',
         'images'    => ROOT.'/image',
     ),
